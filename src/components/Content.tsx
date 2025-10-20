@@ -9,8 +9,7 @@ const Content: React.FC<ContentProps> = ({ children }) => {
     <main
       style={{
         flex: 1,
-        backgroundColor: "#f9f9f9",
-        padding: "24px",
+        backgroundColor: "#fff",
         overflowY: "auto",
       }}
     >
