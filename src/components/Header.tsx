@@ -1,31 +1,51 @@
-import { Box, Button, Toolbar, Typography } from "@mui/material";
 import React from "react";
+import { AppBar, Toolbar, Typography, Box, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
-    <header
-      style={{
+    <AppBar
+      position="static"
+      sx={{
         backgroundColor: "#fff",
         boxShadow: "0 0.15rem 0.75rem 0 rgb(58 59 69 / 15%)",
       }}
     >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar
+        disableGutters
+        sx={{
+          px: 2,
+          py: 1,
+          height: "50px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography
           variant="h6"
-          sx={{ fontWeight: "bold" }}
+          sx={{
+            fontWeight: "bold",
+            color: "#333",
+            fontSize: "1.1rem",
+          }}
           component={Link}
           to="/"
         >
-          Daily Health
+          Daily Skin
         </Typography>
-        <Box>
-          <Button component={Link} to="/user">
-            User
-          </Button>
+        <Box sx={{ display: "flex", gap: "10px", color: "#666" }}>
+          <Box component={Link} to="/Statistics">
+            통계
+          </Box>
+          <Box component={Link} to="/Management">
+            설정
+          </Box>
         </Box>
       </Toolbar>
-    </header>
+
+      <Divider sx={{ borderColor: "#f2f2f2" }} />
+    </AppBar>
   );
 };
 

@@ -11,6 +11,7 @@ const Content: React.FC<ContentProps> = ({ children }) => {
         flex: 1,
         backgroundColor: "#fff",
         overflowY: "auto",
+        padding: "10px",
       }}
     >
       {children}
