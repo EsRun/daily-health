@@ -1,5 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Box, Divider } from "@mui/material";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import SettingsApplicationsOutlinedIcon from "@mui/icons-material/SettingsApplicationsOutlined";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
@@ -34,11 +36,36 @@ const Header: React.FC = () => {
         >
           Daily Skin
         </Typography>
-        <Box sx={{ display: "flex", gap: "10px", color: "#666" }}>
-          <Box component={Link} to="/Statistics">
+        <Box
+          sx={{
+            display: "flex",
+            gap: "20px",
+            color: "#666",
+            fontSize: "0.750rem",
+          }}
+        >
+          <Box
+            component={Link}
+            to="/Statistics"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <ArticleOutlinedIcon />
             통계
           </Box>
-          <Box component={Link} to="/Management">
+          <Box
+            component={Link}
+            to="/Management"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <SettingsApplicationsOutlinedIcon />
             설정
           </Box>
         </Box>
