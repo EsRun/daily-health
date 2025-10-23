@@ -1,7 +1,12 @@
 import React from "react";
+import CalendarTable from "../components/CalendarTable";
 
 const Calendar: React.FC = () => {
-  return <div>달력</div>;
+  return (
+    <>
+      <CalendarTable />
+    </>
+  );
 };
 
 export default Calendar;
