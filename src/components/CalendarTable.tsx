@@ -7,7 +7,9 @@ interface EventData {
   color?: string;
 }
 
-const CalendarTable: React.FC = () => {
+const CalendarTable: React.FC<{ currentMonths: number }> = ({
+  currentMonths,
+}) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [events, setEvents] = useState<EventData[]>([]);
 
@@ -30,7 +32,7 @@ const CalendarTable: React.FC = () => {
   const calendar = buildCalendar();
 
   useEffect(() => {
-    console.log(calendar);
+    console.log(currentMonths);
   }, []);
   return (
     <>
@@ -49,24 +51,45 @@ const CalendarTable: React.FC = () => {
                 key={i}
                 className={`coulmn ${i === 0 ? "sunday" : ""}`}
                 role="columnheader"
-                sx={{ flex: 1, border: "1px solid #F2F2F2" }}
+                sx={{
+                  paddingLeft: "5px",
+                  flex: 1,
+                  border: "1px solid #F2F2F2",
+                  borderBottom: 0,
+                  fontSize: "0.875rem",
+                  color: "#828282",
+                }}
               >
                 {d}
               </Box>
             ))}
           </Box>
-          <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
             {calendar.map((week, i) => (
               <Box key={i} sx={{ display: "flex", flex: 1 }}>
                 {week.map((day, j) => (
                   <Box
-                    key={j}
                     sx={{
+                      display: "flex",
+                      flexDirection: "column",
                       flex: 1,
-                      border: "1px solid #F2F2F2",
+                      border: "1px solid #f2f2f2",
+                      borderTop: i === 0 ? 0 : "1px solid #f2f2f2",
                     }}
                   >
-                    {day.getDate()}
+                    <Box
+                      sx={{
+                        padding: "5px 0 0 5px",
+                        flex: 2,
+                        //border: "1px solid #F2F2F2",
+                        fontSize: "0.875rem",
+                        color:
+                          currentMonths === day.getMonth() ? "#191919" : "#ccc",
+                      }}
+                    >
+                      {day.getDate()}
+                    </Box>
+                    <Box sx={{ flex: 8, backgroundColor: "" }}></Box>
                   </Box>
                 ))}
               </Box>

@@ -11,6 +11,9 @@ import {
 import Router from "./router/Router";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "'Noto Sans KR', sans-serif",
+  },
   palette: {
     background: {
       default: "#f9f9f9",
