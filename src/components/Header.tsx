@@ -16,9 +16,8 @@ const Header: React.FC = () => {
       <Toolbar
         disableGutters
         sx={{
-          px: 2,
+          px: 3,
           py: 1,
-          height: "50px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -27,6 +26,7 @@ const Header: React.FC = () => {
         <Typography
           variant="h6"
           sx={{
+            px: 5,
             fontWeight: "bold",
             color: "#333",
             fontSize: "1.1rem",
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
         <Box
           sx={{
             display: "flex",
-            gap: "20px",
+            gap: "10px",
             color: "#666",
             fontSize: "0.750rem",
           }}
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <ArticleOutlinedIcon />
+            <ArticleOutlinedIcon fontSize="large" />
             통계
           </Box>
           <Box
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <SettingsApplicationsOutlinedIcon />
+            <SettingsApplicationsOutlinedIcon fontSize="large" />
             설정
           </Box>
         </Box>

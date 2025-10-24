@@ -28,13 +28,11 @@ const App: React.FC = () => {
       <Container
         maxWidth={false}
         sx={{
-          width: "1280px",
-          maxWidth: "1280px",
           mx: "auto",
         }}
       >
         <Main>
-          <Box sx={{ py: 1 }}>
+          <Box sx={{ py: 1, display: "flex", flex: 1 }}>
             <Router />
           </Box>
         </Main>

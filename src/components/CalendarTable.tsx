@@ -36,7 +36,7 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
   }, []);
   return (
     <>
-      <Box sx={{ display: "flex", height: "100vh", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <Box>Contorl Bar</Box>
         <Box
           sx={{

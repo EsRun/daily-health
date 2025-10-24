@@ -8,10 +8,11 @@ const Content: React.FC<ContentProps> = ({ children }) => {
   return (
     <main
       style={{
+        padding: "10px",
+        display: "flex",
         flex: 1,
         backgroundColor: "#fff",
         overflowY: "auto",
-        padding: "10px",
       }}
     >
       {children}
