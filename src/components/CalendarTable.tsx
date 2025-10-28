@@ -46,7 +46,7 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
           }}
         >
           <Box sx={{ display: "flex" }}>
-            {["일", "월", "화", "수", "목", "금", "토"].map((d, i) => (
+            {["일", "월", "화", "수", "목", "금", "토"].map((week, i) => (
               <Box
                 key={i}
                 className={`coulmn ${i === 0 ? "sunday" : ""}`}
@@ -60,7 +60,7 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
                   color: "#828282",
                 }}
               >
-                {d}
+                {week}
               </Box>
             ))}
           </Box>
@@ -83,8 +83,8 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
                         flex: 2,
                         //border: "1px solid #F2F2F2",
                         fontSize: "0.875rem",
-                        color:
-                          currentMonths === day.getMonth() ? "#191919" : "#ccc",
+                        color: j === 0 || j === 6 ? "#ff1b1b" : "#191919",
+                        opacity: currentMonths === day.getMonth() ? 1 : 0.3,
                       }}
                     >
                       {day.getDate()}
