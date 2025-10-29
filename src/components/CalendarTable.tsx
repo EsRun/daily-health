@@ -12,6 +12,7 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [events, setEvents] = useState<EventData[]>([]);
+  const weekend: number[] = [0, 6];
 
   const buildCalendar = () => {
     const year = currentMonth.getFullYear();
@@ -30,6 +31,17 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
   };
 
   const calendar = buildCalendar();
+
+  const setColor = (j: number) => {
+    const result = j === 0 || j === 6 ? "#ff1b1b" : "#191919";
+    //opacity: currentMonths === day.getMonth() ? 1 : 0.3,
+    return result;
+  };
+
+  const setOpacity = (day: Date) => {
+    const result = currentMonths === day.getMonth() ? 1 : 0.3;
+    return result;
+  };
 
   useEffect(() => {
     console.log(currentMonths);
@@ -83,8 +95,8 @@ const CalendarTable: React.FC<{ currentMonths: number }> = ({
                         flex: 2,
                         //border: "1px solid #F2F2F2",
                         fontSize: "0.875rem",
-                        color: j === 0 || j === 6 ? "#ff1b1b" : "#191919",
-                        opacity: currentMonths === day.getMonth() ? 1 : 0.3,
+                        color: setColor(j),
+                        opacity: setOpacity(day),
                       }}
                     >
                       {day.getDate()}
