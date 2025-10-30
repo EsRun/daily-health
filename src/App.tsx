@@ -21,7 +21,7 @@ const theme = createTheme({
   },
 });
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

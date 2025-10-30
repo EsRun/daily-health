@@ -4,7 +4,7 @@ import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import SettingsApplicationsOutlinedIcon from "@mui/icons-material/SettingsApplicationsOutlined";
 import { Link } from "react-router-dom";
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <AppBar
       position="static"

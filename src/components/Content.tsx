@@ -4,7 +4,7 @@ interface ContentProps {
   children?: React.ReactNode;
 }
 
-const Content: React.FC<ContentProps> = ({ children }) => {
+const Content = ({ children }: ContentProps) => {
   return (
     <main
       style={{

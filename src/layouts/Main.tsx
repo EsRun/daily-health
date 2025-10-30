@@ -2,11 +2,11 @@ import React from "react";
 import Header from "../components/Header";
 import Content from "../components/Content";
 
-interface MainLayoutProps {
+interface MainProps {
   children: React.ReactNode;
 }
 
-const Main: React.FC<MainLayoutProps> = ({ children }) => {
+const Main = ({ children }: MainProps) => {
   return (
     <div
       style={{

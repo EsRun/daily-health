@@ -7,9 +7,11 @@ interface EventData {
   color?: string;
 }
 
-const CalendarTable: React.FC<{ currentMonths: number }> = ({
-  currentMonths,
-}) => {
+interface Props {
+  currentMonths: number;
+}
+
+const CalendarTable = ({ currentMonths }: Props) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [events, setEvents] = useState<EventData[]>([]);
   const weekend: number[] = [0, 6];
