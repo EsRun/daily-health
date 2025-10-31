@@ -7,9 +7,32 @@ const CalendarNavigator = () => {
   return (
     <Box>
       <Toolbar sx={{ justifyContent: "end" }}>
-        <Box sx={{ display: "flex" }}>
-          <ChevronLeftIcon fontSize="large" color="action" />
-          <ChevronRightIcon fontSize="large" color="action" />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            border: "1px solid #ccc",
+            borderRadius: "7px",
+          }}
+        >
+          <Button
+            sx={{
+              minWidth: "32px",
+              borderRight: "1px solid #ccc",
+              borderRadius: 0,
+            }}
+          >
+            <ChevronLeftIcon fontSize="medium" />
+          </Button>
+          <Button
+            sx={{
+              minWidth: "32px",
+              borderRight: "1px solid #ccc",
+              borderRadius: 0,
+            }}
+          >
+            <ChevronRightIcon fontSize="medium" />
+          </Button>
           <Button>오늘</Button>
         </Box>
       </Toolbar>

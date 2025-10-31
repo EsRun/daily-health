@@ -51,7 +51,6 @@ const CalendarTable = ({ currentMonths }: Props) => {
   return (
     <>
       <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Box>Contorl Bar</Box>
         <Box
           sx={{
             display: "flex",
