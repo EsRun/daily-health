@@ -8,7 +8,7 @@ const Content = ({ children }: ContentProps) => {
   return (
     <main
       style={{
-        padding: "10px",
+        padding: "0 20px",
         display: "flex",
         flex: 1,
         backgroundColor: "#fff",

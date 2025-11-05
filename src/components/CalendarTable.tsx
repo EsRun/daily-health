@@ -46,7 +46,7 @@ const CalendarTable = ({ currentMonths }: Props) => {
   };
 
   useEffect(() => {
-    console.log(currentMonths);
+    //console.log(currentMonths);
   }, []);
   return (
     <>
@@ -70,7 +70,7 @@ const CalendarTable = ({ currentMonths }: Props) => {
                   border: "1px solid #F2F2F2",
                   borderBottom: 0,
                   fontSize: "0.875rem",
-                  color: "#828282",
+                  color: i === 0 || i === 6 ? "#ff1b1b" : "#828282",
                 }}
               >
                 {week}

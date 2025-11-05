@@ -29,7 +29,7 @@ const Header = () => {
             px: 5,
             fontWeight: "bold",
             color: "#333",
-            fontSize: "1.1rem",
+            fontSize: "1.2rem",
           }}
           component={Link}
           to="/"
