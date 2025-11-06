@@ -4,10 +4,23 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import React, { useEffect, useState } from "react";
 
 const CalendarNavigator = () => {
-  const [currentYear, setCurrentYer] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const changeMonth = (month: number) => {
+    setCurrentDate((prev) => {
+      const newDate = new Date(prev);
+      newDate.setMonth(prev.getMonth() + month);
+      return newDate;
+    });
+  };
+
+  const setToday = () => {
+    setCurrentDate(new Date());
+  };
+
   useEffect(() => {
-    console.log(currentYear.getMonth() + 1);
-  }, [currentYear]);
+    console.log(currentDate.getMonth() + 1);
+  }, [currentDate]);
   return (
     <Box sx={{ my: 1, display: "flex", justifyContent: "flex-end" }}>
       <Toolbar
@@ -20,9 +33,9 @@ const CalendarNavigator = () => {
         }}
       >
         <Box>
-          {currentYear.getFullYear() +
+          {currentDate.getFullYear() +
             "년 " +
-            (currentYear.getMonth() + 1) +
+            (currentDate.getMonth() + 1) +
             "월"}
         </Box>
       </Toolbar>
@@ -42,6 +55,7 @@ const CalendarNavigator = () => {
               borderRight: "1px solid #ccc",
               borderRadius: 0,
             }}
+            onClick={() => changeMonth(-1)}
           >
             <ChevronLeftIcon fontSize="medium" />
           </Button>
@@ -52,10 +66,13 @@ const CalendarNavigator = () => {
               borderRight: "1px solid #ccc",
               borderRadius: 0,
             }}
+            onClick={() => changeMonth(+1)}
           >
             <ChevronRightIcon fontSize="medium" />
           </Button>
-          <Button color="inherit">오늘</Button>
+          <Button color="inherit" onClick={() => setToday()}>
+            오늘
+          </Button>
         </Box>
       </Toolbar>
     </Box>
