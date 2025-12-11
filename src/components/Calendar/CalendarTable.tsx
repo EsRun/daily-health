@@ -8,26 +8,27 @@ interface EventData {
 }
 
 interface Props {
-  currentMonths: number;
+  currentDate: Date;
 }
 
-const CalendarTable = ({ currentMonths }: Props) => {
+const CalendarTable = ({ currentDate }: Props) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [events, setEvents] = useState<EventData[]>([]);
   const weekend: number[] = [0, 6];
 
   const buildCalendar = () => {
-    const year = currentMonth.getFullYear();
-    const month = currentMonth.getMonth();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
     const first = new Date(year, month, 1);
+
     const startDay = new Date(first);
-    startDay.setDate(1 - first.getDay()); // 일요일부터 시작
+    startDay.setDate(1 - first.getDay());
 
     return Array.from({ length: 6 }, (_, row) =>
       Array.from({ length: 7 }, (_, col) => {
-        const date = new Date(startDay);
-        date.setDate(startDay.getDate() + row * 7 + col);
-        return date;
+        const d = new Date(startDay);
+        d.setDate(startDay.getDate() + row * 7 + col);
+        return d;
       })
     );
   };
@@ -40,10 +41,8 @@ const CalendarTable = ({ currentMonths }: Props) => {
     return result;
   };
 
-  const setOpacity = (day: Date) => {
-    const result = currentMonths === day.getMonth() ? 1 : 0.3;
-    return result;
-  };
+  const setOpacity = (day: Date) =>
+    day.getMonth() === currentDate.getMonth() ? 1 : 0.3;
 
   useEffect(() => {
     //console.log(currentMonths);
@@ -79,7 +78,13 @@ const CalendarTable = ({ currentMonths }: Props) => {
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
             {calendar.map((week, i) => (
-              <Box key={i} sx={{ display: "flex", flex: 1 }}>
+              <Box
+                key={i}
+                sx={{
+                  display: "flex",
+                  flex: 1,
+                }}
+              >
                 {week.map((day, j) => (
                   <Box
                     sx={{
@@ -88,6 +93,10 @@ const CalendarTable = ({ currentMonths }: Props) => {
                       flex: 1,
                       border: "1px solid #f2f2f2",
                       borderTop: i === 0 ? 0 : "1px solid #f2f2f2",
+                      "&:hover": {
+                        bgcolor: "#c4eaff99",
+                        cursor: "pointer",
+                      },
                     }}
                   >
                     <Box

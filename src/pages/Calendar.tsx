@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CalendarTable from "../components/Calendar/CalendarTable";
 import CalendarNavigator from "../components/Calendar/CalendarNavigator";
 import { Box } from "@mui/material";
 import CalendarAdd from "../components/Calendar/CalendarAdd";
 
 const Calendar: React.FC = () => {
-  const today = new Date();
-  const currentMonth = today.getMonth();
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {}, []);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <CalendarNavigator />
-      <CalendarTable currentMonths={currentMonth} />
+      <CalendarNavigator
+        currentDate={currentDate}
+        setCurrentDate={setCurrentDate}
+      />
+      <CalendarTable currentDate={currentDate} />
       <CalendarAdd />
     </Box>
   );

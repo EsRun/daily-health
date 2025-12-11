@@ -3,9 +3,12 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import React, { useEffect, useState } from "react";
 
-const CalendarNavigator = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+interface Props {
+  currentDate: Date;
+  setCurrentDate: React.Dispatch<React.SetStateAction<Date>>;
+}
 
+const CalendarNavigator = ({ currentDate, setCurrentDate }: Props) => {
   const changeMonth = (month: number) => {
     setCurrentDate((prev) => {
       const newDate = new Date(prev);
@@ -14,9 +17,7 @@ const CalendarNavigator = () => {
     });
   };
 
-  const setToday = () => {
-    setCurrentDate(new Date());
-  };
+  const setToday = () => setCurrentDate(new Date());
 
   useEffect(() => {
     console.log(currentDate.getMonth() + 1);
