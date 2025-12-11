@@ -1,19 +1,27 @@
-import { Box } from '@mui/material'
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import React from 'react'
+import { Box } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import React from "react";
 
-const CalendarAdd = () => {
-  return (
-    <Box sx={{
-        position: 'fixed',
-        bottom: 0,
-        right: 30,
-        cursor: 'pointer',
-        fontSize: 50,
-    }}>
-        <AddCircleIcon fontSize='inherit' color='info' />
-    </Box>
-  )
+interface Props {
+  onClick: () => void;
 }
 
-export default CalendarAdd
+const CalendarAdd = ({ onClick }: Props) => {
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        position: "fixed",
+        bottom: 20,
+        right: 30,
+        cursor: "pointer",
+        fontSize: 60,
+        "&:hover": { opacity: 0.8 },
+      }}
+    >
+      <AddCircleIcon fontSize="inherit" color="info" />
+    </Box>
+  );
+};
+
+export default CalendarAdd;

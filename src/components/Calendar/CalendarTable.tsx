@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import CalendarInputModal from "./CalendarInputModal";
 
-interface EventData {
+interface EventItem {
   date: string;
-  title: string;
-  color?: string;
+  morning?: string;
+  lunch?: string;
+  dinner?: string;
 }
 
 interface Props {
@@ -12,9 +14,15 @@ interface Props {
 }
 
 const CalendarTable = ({ currentDate }: Props) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [events, setEvents] = useState<EventData[]>([]);
-  const weekend: number[] = [0, 6];
+  const [events, setEvents] = useState<EventItem[]>([]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+
+  // 입력 상태
+  const [morning, setMorning] = useState("");
+  const [lunch, setLunch] = useState("");
+  const [dinner, setDinner] = useState("");
 
   const buildCalendar = () => {
     const year = currentDate.getFullYear();
@@ -35,90 +43,80 @@ const CalendarTable = ({ currentDate }: Props) => {
 
   const calendar = buildCalendar();
 
-  const setColor = (j: number) => {
-    const result = j === 0 || j === 6 ? "#ff1b1b" : "#191919";
-    //opacity: currentMonths === day.getMonth() ? 1 : 0.3,
-    return result;
+  const openInputModal = (day: Date) => {
+    const dateStr = day.toISOString().split("T")[0];
+    setSelectedDate(dateStr);
+    setOpenModal(true);
   };
 
-  const setOpacity = (day: Date) =>
-    day.getMonth() === currentDate.getMonth() ? 1 : 0.3;
+  const handleSave = () => {
+    setEvents((prev) => [
+      ...prev,
+      { date: selectedDate, morning, lunch, dinner },
+    ]);
 
-  useEffect(() => {
-    //console.log(currentMonths);
-  }, []);
+    setMorning("");
+    setLunch("");
+    setDinner("");
+    setOpenModal(false);
+  };
+
+  const handleCancel = () => {
+    setMorning("");
+    setLunch("");
+    setDinner("");
+    setOpenModal(false);
+  };
+
   return (
     <>
       <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Box
-          sx={{
-            display: "flex",
-            flex: 1,
-            flexDirection: "column",
-          }}
-        >
-          <Box sx={{ display: "flex" }}>
-            {["일", "월", "화", "수", "목", "금", "토"].map((week, i) => (
+        {calendar.map((week, i) => (
+          <Box key={i} sx={{ display: "flex", flex: 1 }}>
+            {week.map((day, j) => (
               <Box
-                key={i}
-                className={`coulmn ${i === 0 ? "sunday" : ""}`}
-                role="columnheader"
+                key={day.toISOString()}
                 sx={{
-                  paddingLeft: "5px",
                   flex: 1,
-                  border: "1px solid #F2F2F2",
-                  borderBottom: 0,
-                  fontSize: "0.875rem",
-                  color: i === 0 || i === 6 ? "#ff1b1b" : "#828282",
-                }}
-              >
-                {week}
-              </Box>
-            ))}
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
-            {calendar.map((week, i) => (
-              <Box
-                key={i}
-                sx={{
+                  border: "1px solid #f2f2f2",
                   display: "flex",
-                  flex: 1,
+                  flexDirection: "column",
+                  "&:hover": { background: "#c4eaff99", cursor: "pointer" },
                 }}
+                onClick={() => openInputModal(day)}
               >
-                {week.map((day, j) => (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      flex: 1,
-                      border: "1px solid #f2f2f2",
-                      borderTop: i === 0 ? 0 : "1px solid #f2f2f2",
-                      "&:hover": {
-                        bgcolor: "#c4eaff99",
-                        cursor: "pointer",
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        padding: "5px 0 0 5px",
-                        flex: 2,
-                        //border: "1px solid #F2F2F2",
-                        fontSize: "0.875rem",
-                        color: setColor(j),
-                        opacity: setOpacity(day),
-                      }}
-                    >
-                      {day.getDate()}
-                    </Box>
-                    <Box sx={{ flex: 8, backgroundColor: "" }}></Box>
-                  </Box>
-                ))}
+                <Box sx={{ padding: "5px" }}>{day.getDate()}</Box>
+
+                <Box sx={{ fontSize: "0.7rem", paddingLeft: "5px" }}>
+                  {events
+                    .filter((e) => e.date === day.toISOString().split("T")[0])
+                    .map((evt, idx) => (
+                      <div key={idx} style={{ color: "#1976d2" }}>
+                        {evt.morning && `아침: ${evt.morning}`}{" "}
+                        {evt.lunch && `점심: ${evt.lunch}`}{" "}
+                        {evt.dinner && `저녁: ${evt.dinner}`}
+                      </div>
+                    ))}
+                </Box>
               </Box>
             ))}
           </Box>
-        </Box>
+        ))}
       </Box>
+
+      {/* 모달 컴포넌트 사용 */}
+      <CalendarInputModal
+        open={openModal}
+        date={selectedDate}
+        morning={morning}
+        lunch={lunch}
+        dinner={dinner}
+        setMorning={setMorning}
+        setLunch={setLunch}
+        setDinner={setDinner}
+        onSave={handleSave}
+        onCancel={handleCancel}
+      />
     </>
   );
 };
